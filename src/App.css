@@ -1,0 +1,120 @@
+/* Modern Movie Guess Game Styles */
+.app-bg {
+	min-height: 100vh;
+	background: linear-gradient(135deg, #232526 0%, #414345 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+.movie-card {
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+	padding: 2.5rem 2rem 2rem 2rem;
+	max-width: 400px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.2rem;
+}
+
+.title {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #232526;
+	margin-bottom: 0.5rem;
+}
+
+.clue-section {
+	background: #f5f6fa;
+	border-radius: 8px;
+	padding: 0.7rem 1rem;
+	width: 100%;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	font-size: 1.1rem;
+}
+.clue-label {
+	font-weight: 600;
+	color: #6c63ff;
+}
+.clue-text {
+	color: #232526;
+}
+
+.guess-input {
+	width: 100%;
+	padding: 0.7rem 1rem;
+	border: 1.5px solid #e0e0e0;
+	border-radius: 8px;
+	font-size: 1rem;
+	outline: none;
+	transition: border 0.2s;
+}
+.guess-input:focus {
+	border: 1.5px solid #6c63ff;
+}
+
+.submit-btn, .next-btn {
+	width: 100%;
+	padding: 0.7rem 1rem;
+	border: none;
+	border-radius: 8px;
+	background: #6c63ff;
+	color: #fff;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	margin-top: 0.5rem;
+	transition: background 0.2s;
+}
+.submit-btn:disabled, .next-btn:disabled {
+	background: #bdbdbd;
+	cursor: not-allowed;
+}
+.submit-btn:hover:not(:disabled), .next-btn:hover:not(:disabled) {
+	background: #5548c8;
+}
+
+.message {
+	margin-top: 0.5rem;
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+.message.correct {
+	color: #27ae60;
+}
+.message.wrong {
+	color: #e74c3c;
+}
+
+.loading {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	color: #6c63ff;
+	background: #f5f6fa;
+}
+
+.game-over-container {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #232526 0%, #414345 100%);
+}
+.game-over-card {
+	background: #fff;
+	border-radius: 18px;
+	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+	padding: 2.5rem 2rem 2rem 2rem;
+	max-width: 400px;
+	width: 100%;
+	text-align: center;
+}
