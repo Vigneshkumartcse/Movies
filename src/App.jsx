@@ -11,8 +11,9 @@ function App() {
   const [message, setMessage] = useState('');
 
   async function fetchMovies() {
-    const response = await fetch('https://moviebackend-1-7bwx.onrender.com/movies');
+    const response = await fetch('https://backmv-oc4g.onrender.com/movies');
     const data = await response.json();
+    console.log(data);
     setMovies(data);
   }
 
