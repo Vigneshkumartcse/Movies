@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-
+import Load from './Load';
 function GuessCrickter() {
  const [cricketers, setCricketers] = useState([]);
   const [cricketerIndex, setCricketerIndex] = useState(0);
@@ -20,7 +20,7 @@ function GuessCrickter() {
   }
 
   async function fetchCricketers() {
-    const response = await fetch('https://guessmovie-2.onrender.com/cricket');
+    const response = await fetch('https://guessmovie-4.onrender.com/cricket');
     const data = await response.json();
     setCricketers(shuffleArray(data));
   }
@@ -30,7 +30,7 @@ function GuessCrickter() {
   }, []);
 
   if (!cricketers.length) {
-    return <div className="loading">Loading...</div>;
+    return <div ><Load/></div>;
   }
 
   const currentCricketer = cricketers[cricketerIndex];
@@ -83,14 +83,13 @@ function GuessCrickter() {
 
   return (
     <div className="cric-bg">
+      <div className="score-bar-fixed">
+        <span className="score-label">Score</span>
+        <span className="score-value">
+          <span role="img" aria-label="coin" className="coin-icon">🪙</span> {score}
+        </span>
+      </div>
       <div className="movie-card">
-        <div className="score-bar" style={{display:'flex', justifyContent:'flex-end', alignItems:'center', marginBottom:'0.5rem'}}>
-            
-          <span className="score-label" style={{marginRight:'0.5rem', fontWeight:600}}>Score</span>
-          <span className="score-value" style={{fontWeight:700, fontSize:'1.2rem'}}>
-            <span role="img" aria-label="coin" className="coin-icon">🪙</span> {score}
-          </span>
-        </div>
         <h1 className="title">🎬 Guess the Cricketer</h1>
         <div className="clue-section">
           <span className="clue-label">Clue:</span>

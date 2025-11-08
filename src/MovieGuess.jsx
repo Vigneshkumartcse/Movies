@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Load from './Load.jsx';
 
 function MovieGuess() {
   const [movies, setMovies] = useState([]);
@@ -21,7 +22,7 @@ function MovieGuess() {
   }
 
   async function fetchMovies() {
-    const response = await fetch('https://guessmovie-2.onrender.com/movies');
+    const response = await fetch('https://guessmovie-4.onrender.com/movies');
     const data = await response.json();
     setMovies(shuffleArray(data));
   }
@@ -31,7 +32,7 @@ function MovieGuess() {
   }, []);
 
   if (!movies.length) {
-    return <div className="loading">Loading...</div>;
+    return <div ><Load/></div>;
   }
 
   const currentMovie = movies[movieIndex];
@@ -83,14 +84,14 @@ function MovieGuess() {
   }
 
   return (
-    <div className="app-bg">
+    <div className="cric-bg">
+      <div className="score-bar-fixed">
+        <span className="score-label">Score</span>
+        <span className="score-value">
+          <span role="img" aria-label="coin" className="coin-icon">🪙</span> {score}
+        </span>
+      </div>
       <div className="movie-card">
-        <div className="score-bar" style={{display:'flex', justifyContent:'flex-end', alignItems:'center', marginBottom:'0.5rem'}}>
-          <span className="score-label" style={{marginRight:'0.5rem', fontWeight:600}}>Score</span>
-          <span className="score-value" style={{fontWeight:700, fontSize:'1.2rem'}}>
-            <span role="img" aria-label="coin" className="coin-icon">🪙</span> {score}
-          </span>
-        </div>
         <h1 className="title">🎬 Guess the Movie</h1>
         <div className="clue-section">
           <span className="clue-label">Clue:</span>

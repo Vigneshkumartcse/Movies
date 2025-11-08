@@ -9,6 +9,7 @@ function App() {
     <div className='outer' >
   <Card data="Guess Movie"  onClick={() => { navigate('/movieguess') }} />
   <Card data="Guess Cricketer"  onClick={() => { navigate('/GuessCrickter') }} />
+  <Card data="guess together"  onClick={() => { navigate('/quesspuzzle') }} />
     </div>
   );
 }

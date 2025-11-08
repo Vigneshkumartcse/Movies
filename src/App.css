@@ -1,3 +1,248 @@
+.makeitfun-wide {
+	max-width: 700px !important;
+	min-width: 700px !important;
+}
+
+@import "tailwindcss";
+
+/* Fixed score bar for top right position */
+.score-bar-fixed {
+	position: absolute;
+	top: 4.2rem;
+	right: 2.5rem;
+	display: flex;
+	align-items: center;
+	gap: 0.7rem;
+	background: #fffbe6;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(31,38,135,0.07);
+	padding: 0.5rem 1.2rem;
+	font-size: 1.1rem;
+	font-weight: 600;
+	z-index: 20;
+}
+/* About page full-width styles - Modern & Stylish */
+.about-full {
+	width: 100vw;
+	min-height: 100vh;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 4rem 1.5rem;
+	box-sizing: border-box;
+	position: relative;
+	overflow-x: hidden;
+}
+
+.about-full::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+	            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+	z-index: 1;
+}
+
+.about-title {
+	font-size: 2.8rem;
+	font-weight: 800;
+	color: #ffffff;
+	margin-bottom: 2rem;
+	text-align: center;
+	text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+	letter-spacing: 0.5px;
+	line-height: 1.3;
+	max-width: 900px;
+	z-index: 2;
+	position: relative;
+	animation: fadeInDown 0.8s ease-out;
+}
+
+.about-desc {
+	font-size: 1.2rem;
+	color: #f5f5f5;
+	margin-bottom: 1.5rem;
+	text-align: center;
+	max-width: 750px;
+	line-height: 1.8;
+	text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+	z-index: 2;
+	position: relative;
+	animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.about-list {
+	font-size: 1.2rem;
+	color: #2d3748;
+	margin-bottom: 2rem;
+	text-align: left;
+	max-width: 750px;
+	background: rgba(255, 255, 255, 0.95);
+	border-radius: 20px;
+	padding: 2rem 2.5rem;
+	box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(255,255,255,0.3);
+	z-index: 2;
+	position: relative;
+	animation: fadeInUp 0.8s ease-out 0.4s both;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-list:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+}
+
+.about-list li {
+	margin-bottom: 1rem;
+	font-size: 1.2rem;
+	font-weight: 500;
+	line-height: 1.6;
+	position: relative;
+	padding-left: 0.5rem;
+}
+
+.about-list li::before {
+	content: '';
+	position: absolute;
+	left: -1.5rem;
+	top: 0.6rem;
+	width: 8px;
+	height: 8px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	border-radius: 50%;
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@media (max-width: 768px) {
+	.about-title {
+		font-size: 2rem;
+	}
+	.about-desc {
+		font-size: 1.05rem;
+	}
+	.about-list {
+		padding: 1.5rem 1.8rem;
+		font-size: 1.05rem;
+	}
+	.about-list li {
+		font-size: 1.05rem;
+	}
+}
+/* Modern Navbar Styles */
+.navbar {
+	width: 100%;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+	box-shadow: 0 2px 8px rgba(31,38,135,0.07);
+	padding: 0.7rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	z-index: 10;
+}
+.navbar-list {
+	list-style: none;
+	display: flex;
+	gap: 2.5rem;
+	margin: 0;
+	padding: 0;
+}
+.navbar-item {
+	display: flex;
+	align-items: center;
+}
+.navbar-link {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 1.1rem;
+	font-weight: 600;
+	padding: 0.3rem 1rem;
+	border-radius: 6px;
+	transition: background 0.2s, color 0.2s;
+}
+.navbar-link:hover {
+	background: #d4f8e8;
+	color: #000000;
+}
+.movie-clue.answer-shown {
+	background: #d4f8e8 !important;
+	transition: background 0.2s;
+}
+.btn.btn-green {
+	background: #a3e9c7 !important;
+	color: #232526;
+	border-radius: 6px;
+	padding: 0.2rem 0.7rem;
+	transition: background 0.2s;
+}
+/* Makeitfun component styles */
+.cric-bg {
+	min-height: 100vh;
+	background: linear-gradient(120deg, #ffffff 0%, #ffffff 100%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+.movie-card {
+	background: #fff;
+	border-radius: 0;
+	box-shadow: none;
+	padding: 2.5rem 2rem 2rem 2rem;
+	max-width: 420px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1.2rem;
+}
+.movie-clue {
+	background: #f5f5f5;
+	border-radius: 12px;
+	padding: 1rem 1.2rem;
+	margin-bottom: 1rem;
+	box-shadow: 0 2px 8px rgba(31,38,135,0.07);
+}
+.Question-title {
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #43c6ac;
+	margin-bottom: 0.5rem;
+	letter-spacing: 0.5px;
+}
+.Question-text {
+	font-size: 1rem;
+	color: #232526;
+	line-height: 1.5;
+}
 .score-bar {
 	display: flex;
 	justify-content: flex-end;
@@ -8,6 +253,13 @@
 	padding-top: 0;
 	padding-bottom: 0;
 	line-height: 1;
+}
+
+.qsdiv{
+	display: flex;
+	justify-content: space-between;
+	
+	gap: 1.2rem;
 }
 /* Card image and overlay text styles */
 .card {
@@ -42,28 +294,14 @@
 	pointer-events: none;
 }
 /* Modern Movie Guess Game Styles */
-.app-bg {
-	min-height: 100vh;
-	background-color: #e0e0e0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-}
 
-.cric-bg {
-	min-height: 100vh;
-	background-color: #e0e0e0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-}
+
+
 /* Modernize game card and layout */
 .movie-card {
 	background: rgba(255,255,255,0.95);
-	border-radius: 20px;
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+	border-radius: 0;
+	box-shadow: none;
 	padding: 2.5rem 2rem 2rem 2rem;
 	max-width: 500px;
 	min-width: 500px;
@@ -180,93 +418,6 @@
 	color: #232526;
 }
 
-.movie-card {
-	background: #fff;
-	border-radius: 18px;
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-	padding: 2.5rem 2rem 2rem 2rem;
-	max-width: 400px;
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 1.2rem;
-}
-
-.title {
-	font-size: 2rem;
-	font-weight: 700;
-	color: #232526;
-	margin-bottom: 0.5rem;
-	margin-top: 0;
-	padding-top: 0;
-	padding-bottom: 0;
-	line-height: 1;
-}
-
-.clue-section {
-	background: #f5f6fa;
-	border-radius: 8px;
-	padding: 0.7rem 1rem;
-	width: 100%;
-	display: flex;
-	gap: 0.5rem;
-	align-items: center;
-	font-size: 1.1rem;
-}
-.clue-label {
-	font-weight: 600;
-	color: #6c63ff;
-}
-.clue-text {
-	color: #232526;
-}
-
-.guess-input {
-	width: 100%;
-	padding: 0.7rem 1rem;
-	border: 1.5px solid #e0e0e0;
-	border-radius: 8px;
-	font-size: 1rem;
-	outline: none;
-	transition: border 0.2s;
-}
-.guess-input:focus {
-	border: 1.5px solid #6c63ff;
-}
-
-.submit-btn, .next-btn {
-	width: 100%;
-	padding: 0.7rem 1rem;
-	border: none;
-	border-radius: 8px;
-	background: #6c63ff;
-	color: #fff;
-	font-size: 1rem;
-	font-weight: 600;
-	cursor: pointer;
-	margin-top: 0.5rem;
-	transition: background 0.2s;
-}
-.submit-btn:disabled, .next-btn:disabled {
-	background: #bdbdbd;
-	cursor: not-allowed;
-}
-.submit-btn:hover:not(:disabled), .next-btn:hover:not(:disabled) {
-	background: #5548c8;
-}
-
-.message {
-	margin-top: 0.5rem;
-	font-size: 1.1rem;
-	font-weight: 500;
-}
-.message.correct {
-	color: #27ae60;
-}
-.message.wrong {
-	color: #e74c3c;
-}
 
 .loading {
 	min-height: 100vh;
@@ -285,15 +436,7 @@
 	justify-content: center;
 	background: linear-gradient(135deg, #232526 0%, #414345 100%);
 }
-.game-over-card {
-	background: #fff;
-	border-radius: 18px;
-	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-	padding: 2.5rem 2rem 2rem 2rem;
-	max-width: 400px;
-	width: 100%;
-	text-align: center;
-}
+
 
 
 .outer{
@@ -301,4 +444,79 @@
 	height: 100vh;
 	padding: 40px;
 	gap: 20px;
+}
+
+.btn {
+	background-color: gray;
+	color: white;
+	padding: 0.2rem 0.5rem;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+.btn:hover {
+	background-color: darkgray;
+}
+
+
+/* HTML: <div class="loader"></div> */
+.load {
+  width: 35px;
+  height: 80px;
+  position: relative;
+}
+.load:after {
+  content: "";
+  position: absolute;
+  inset: 0 0 20px;
+  border-radius: 15px 15px 10px 10px;
+  padding: 1px;
+  background: repeating-linear-gradient(-45deg,#91d2e2 0 8px,#1296a7 0 12px) content-box;
+  --c: radial-gradient(farthest-side,#000 94%,#0000);
+  -webkit-mask:
+    linear-gradient(#0000 0 0),
+    var(--c) -10px -10px,
+    var(--c)  15px -14px,
+    var(--c)   9px -6px,
+    var(--c) -12px  9px,
+    var(--c)  14px  9px,
+    var(--c)  23px 27px,
+    var(--c)  -8px 35px,
+    var(--c)   50% 50%,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0),
+    var(--c) -10px -10px,
+    var(--c)  15px -14px,
+    var(--c)   9px -6px,
+    var(--c) -12px  9px,
+    var(--c)  14px  9px,
+    var(--c)  23px 27px,
+    var(--c)  -8px 35px,
+    var(--c)   50% 50%,
+    linear-gradient(#0000 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude,add,add,add,add,add,add,add,add;
+  -webkit-mask-repeat: no-repeat;
+  animation: l2 3s infinite;
+}
+.load:before {
+  content: "";
+  position: absolute;
+  inset: 50% calc(50% - 4px) 0;
+  background: #e0a267;
+  border-radius: 50px;
+}
+@keyframes l2 {
+ 0%   {-webkit-mask-size: auto,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0}
+ 10%  {-webkit-mask-size: auto,25px 25px,0 0,0 0,0 0,0 0,0 0,0 0,0 0}
+ 20%  {-webkit-mask-size: auto,25px 25px,25px 25px,0 0,0 0,0 0,0 0,0 0,0 0}
+ 30%  {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,0 0,0 0,0 0,0 0,0 0}
+ 40%  {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,0 0,0 0,0 0,0 0}
+ 50%  {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,0 0,0 0,0 0}
+ 60%  {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,0 0,0 0}
+ 70%  {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,25px 25px,0 0}
+ 80%,
+ 100% {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,25px 25px,200% 200%}
 }
