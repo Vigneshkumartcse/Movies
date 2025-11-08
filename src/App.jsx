@@ -7,8 +7,8 @@ function App() {
 
   return (
     <div className='outer' >
-  <Card data="Guess Movie" url="public\mv.jpg" onClick={() => { navigate('/movieguess') }} />
-  <Card data="Guess Cricketer" url="public\ck.avif" onClick={() => { navigate('/GuessCrickter') }} />
+  <Card data="Guess Movie"  onClick={() => { navigate('/movieguess') }} />
+  <Card data="Guess Cricketer"  onClick={() => { navigate('/GuessCrickter') }} />
     </div>
   );
 }
