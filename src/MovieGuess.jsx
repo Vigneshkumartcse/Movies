@@ -95,7 +95,7 @@ function MovieGuess() {
         <h1 className="title">🎬 Guess the Movie</h1>
         <div className="clue-section">
           <span className="clue-label">Clue:</span>
-          <span className="clue-text">{clues[clueIndex]}</span>
+          <span className="clue-text" dangerouslySetInnerHTML={{__html: clues[clueIndex].replaceAll('/n', '<br />')}} />
         </div>
         <input
           className="guess-input"
@@ -106,7 +106,7 @@ function MovieGuess() {
           disabled={showNext}
         />
         <button className="submit-btn" onClick={handleSubmit} disabled={showNext}>Submit</button>
-        {message && <p className={`message ${isCorrect ? 'correct' : 'wrong'}`}>{message}</p>}
+        {message && <p className={`message ${isCorrect ? 'correct' : 'wrong'}`} dangerouslySetInnerHTML={{__html: message.replaceAll('/n', '<br />')}} />}
         {showNext && movieIndex < movies.length - 1 && (
           <button className="next-btn" onClick={handleNextMovie}>Next Movie</button>
         )}
