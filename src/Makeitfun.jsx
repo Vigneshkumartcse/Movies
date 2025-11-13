@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDice } from '@fortawesome/free-solid-svg-icons';
+import { faDice, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
 import Load from './Load';
 
 function Makeitfun() {
@@ -101,19 +101,7 @@ function Makeitfun() {
               <button className="zoom-btn" title="Zoom" style={{marginRight: '12px'}}>
                 <FontAwesomeIcon icon={faSearchPlus} />
               </button>
-              <button
-                className="share-btn"
-                title="Share on WhatsApp"
-                style={{marginRight: '12px', background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.6rem 1.2rem', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem'}}
-                onClick={() => {
-                  const url = window.location.href;
-                  const text = encodeURIComponent(`${randomQuestion.Question}\nPlay on: ${url}`);
-                  window.open(`https://wa.me/?text=${text}`, '_blank');
-                }}
-              >
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '22px', height: '22px'}} />
-                Share
-              </button>
+             
             </div>
           </div>
         </div>
@@ -130,30 +118,32 @@ function Makeitfun() {
               <div className={`movie-clue`}>
                 <div className='qsdiv'>
                   <div className="Question-title">{item.name}</div>
-                  <button
-                    className="share-btn"
-                    title="Share on WhatsApp"
-                    style={{marginRight: '12px', background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.4rem 1rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}
-                    onClick={() => {
-                      const url = window.location.href;
-                      const text = encodeURIComponent(`${item.Question}\nPlay on: ${url}`);
-                      window.open(`https://wa.me/?text=${text}`, '_blank');
-                    }}
-                  >
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '20px', height: '20px'}} />
-                    Share
-                  </button>
-                  <span
-                    className={`btn${isAnswerShown ? ' btn-green' : ''}`}
-                    onClick={() => {
-                      setDisplayAnswer((prev) => ({
-                        ...prev,
-                        [startIdx + idx]: !isAnswerShown
-                      }));
-                    }}
-                  >
-                    {isAnswerShown ? 'Hide answer' : 'Show answer'}
-                  </span>
+                  <div style={{display: 'inline-flex', alignItems: 'center', gap: '10px'}}>
+                    <button
+                      className="share-btn"
+                      title="Share on WhatsApp"
+                      style={{background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.4rem 1rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.1rem'}}
+                      onClick={() => {
+                        const url = window.location.href;
+                        const text = encodeURIComponent(`${item.Question}\nPlay on: ${url}`);
+                        window.open(`https://wa.me/?text=${text}`, '_blank');
+                      }}
+                    >
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '20px', height: '20px'}} />
+                      Share
+                    </button>
+                    <span
+                      className={`btn${isAnswerShown ? ' btn-green' : ''}`}
+                      onClick={() => {
+                        setDisplayAnswer((prev) => ({
+                          ...prev,
+                          [startIdx + idx]: !isAnswerShown
+                        }));
+                      }}
+                    >
+                      {isAnswerShown ? 'Hide answer' : 'Show answer'}
+                    </span>
+                  </div>
                 </div>
                 <div className="Question-text" dangerouslySetInnerHTML={{__html: item.Question.replaceAll('\n', '<br />')}} />
               </div>

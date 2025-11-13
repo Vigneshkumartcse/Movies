@@ -814,6 +814,9 @@
 	color: #232526;
 }
 
+button{
+	cursor: pointer;
+}
 
 .loading {
 	min-height: 100vh;
