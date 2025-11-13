@@ -1,3 +1,170 @@
+/* Detective page sizing and typography */
+.detective-bg {
+  min-height: 100vh;
+  padding: 2.5rem 1.5rem;
+}
+.detective-container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.detective-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.detective-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08), 0 4px 12px rgba(0,0,0,0.03);
+  padding: 2.5rem 2.8rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.detective-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(102, 126, 234, 0.12), 0 6px 16px rgba(0,0,0,0.05);
+}
+.detective-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 2px solid rgba(251, 191, 36, 0.15);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.detective-icon {
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  color: #d97706;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.15);
+  font-size: 1.3rem;
+}
+.detective-title {
+  font-weight: 700;
+  font-size: clamp(1.5rem, 1.6vw + 1rem, 2.25rem);
+  letter-spacing: -0.01em;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.2;
+}
+.detective-subtitle {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 400;
+}
+.detective-stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+.detective-question {
+  font-size: clamp(1.05rem, 0.6vw + 1rem, 1.25rem);
+  line-height: 1.85;
+  font-weight: 500;
+  color: #374151;
+  margin-top: 1rem;
+}
+.detective-section {
+  margin-top: 1.5rem;
+  padding: 1.5rem 1.8rem;
+  background: rgba(249, 250, 251, 0.7);
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.detective-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 0.9rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.detective-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+  line-height: 1.7;
+}
+.detective-list li {
+  padding: 0.25rem 0;
+}
+.detective-statement {
+  padding-left: 1rem;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #4b5563;
+  border-left: 4px solid rgba(251, 191, 36, 0.5);
+  margin: 0.6rem 0;
+  line-height: 1.7;
+}
+.detective-clues-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  font-size: 0.9rem;
+  color: #4b5563;
+  line-height: 1.65;
+}
+.detective-clues-list li {
+  padding: 0.2rem 0;
+}
+.detective-toggle-btn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #d97706;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.2s;
+}
+.detective-toggle-btn:hover {
+  color: #b45309;
+  text-decoration: underline;
+}
+.detective-options {
+  background: #ffffff;
+  border: 1px solid rgba(251, 191, 36, 0.12);
+}
+.detective-option-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 12px;
+  background: rgba(249, 250, 251, 0.5);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.detective-option-label:hover {
+  background: rgba(254, 243, 199, 0.35);
+  border-color: rgba(251, 191, 36, 0.2);
+}
+@media (max-width: 768px) {
+  .detective-container {
+    width: 95%;
+  }
+  .detective-card {
+    padding: 1.8rem 1.5rem;
+  }
+}
 .modal-random-btn {
 	background: linear-gradient(135deg, #f3f0ff 0%, #ede9fe 100%);
 	color: #7c3aed;
@@ -737,6 +904,7 @@
 
 .cards-container {
 	display: flex;
+	flex-wrap: wrap;
 	gap: 2rem;
 	z-index: 2;
 	margin-bottom: 3rem;

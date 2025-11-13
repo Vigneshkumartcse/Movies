@@ -33,11 +33,18 @@ function App() {
           data="🧩 Brain Puzzles" 
           onClick={() => { navigate('/tricky') }} 
         />
+        <Card 
+          data="🧩 Solve Mystery" 
+          onClick={() => { navigate('/Mystery') }} 
+        />
+      
       </div>
 
       <div className='landing-footer'>
         <p>Start your challenge now! Pick a game and test your knowledge 🚀</p>
       </div>
+      
+      
     </div>
   );
 }

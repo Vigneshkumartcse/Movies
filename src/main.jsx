@@ -8,6 +8,8 @@ import GuessCrickter from './GuessCrickter.jsx'
 import Makeitfun from './Makeitfun.jsx'
 import About from './About.jsx'
 import Nav from './Nav.jsx'
+import Detective from './Detective.jsx'
+import Login from './Login.jsx'
 createRoot(document.getElementById('root')).render(
 
     <BrowserRouter>
@@ -18,6 +20,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/Movieguess" element={<MovieGuess />} />
         <Route path="/GuessCrickter" element={<GuessCrickter />} />
         <Route path="/tricky" element={<Makeitfun />} />
+        <Route path="/mystery" element={<Detective />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
 

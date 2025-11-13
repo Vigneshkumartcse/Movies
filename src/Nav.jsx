@@ -9,6 +9,7 @@ export default function Nav() {
 				<li className="navbar-item"><Link to="/" className="navbar-link">Home</Link></li>
 				<li className="navbar-item"><Link to="/about" className="navbar-link">About</Link></li>
 				<li className="navbar-item"><Link to="/tricky" className="navbar-link">Tricky</Link></li>
+				<li className="navbar-item"><Link to="/login" className="navbar-link">Login</Link></li>
 			</ul>
 		</nav>
 	);
