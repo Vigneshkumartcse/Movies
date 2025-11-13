@@ -98,6 +98,22 @@ function Makeitfun() {
                   <span className="answer-label">Answer:</span> <span dangerouslySetInnerHTML={{__html: randomQuestion.Answer.replaceAll('\n', '<br />')}} />
                 </div>
               )}
+              <button className="zoom-btn" title="Zoom" style={{marginRight: '12px'}}>
+                <FontAwesomeIcon icon={faSearchPlus} />
+              </button>
+              <button
+                className="share-btn"
+                title="Share on WhatsApp"
+                style={{marginRight: '12px', background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.6rem 1.2rem', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem'}}
+                onClick={() => {
+                  const url = window.location.href;
+                  const text = encodeURIComponent(`${randomQuestion.Question}\nPlay on: ${url}`);
+                  window.open(`https://wa.me/?text=${text}`, '_blank');
+                }}
+              >
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '22px', height: '22px'}} />
+                Share
+              </button>
             </div>
           </div>
         </div>
@@ -114,6 +130,19 @@ function Makeitfun() {
               <div className={`movie-clue`}>
                 <div className='qsdiv'>
                   <div className="Question-title">{item.name}</div>
+                  <button
+                    className="share-btn"
+                    title="Share on WhatsApp"
+                    style={{marginRight: '12px', background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.4rem 1rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem'}}
+                    onClick={() => {
+                      const url = window.location.href;
+                      const text = encodeURIComponent(`${item.Question}\nPlay on: ${url}`);
+                      window.open(`https://wa.me/?text=${text}`, '_blank');
+                    }}
+                  >
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '20px', height: '20px'}} />
+                    Share
+                  </button>
                   <span
                     className={`btn${isAnswerShown ? ' btn-green' : ''}`}
                     onClick={() => {
