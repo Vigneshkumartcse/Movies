@@ -16,6 +16,7 @@ function Makeitfun() {
   const [showRandomAnswer, setShowRandomAnswer] = useState(false);
   const [Question, setQuestion] = useState([]);
   const [DisplayAnswer, setDisplayAnswer] = useState({});
+  const [DisplayImage, setDisplayImage] = useState({});
   const [page, setPage] = useState(0);
   const pageSize = 3;
 
@@ -66,21 +67,34 @@ function Makeitfun() {
 
   return (
     <div className="cric-bg">
-      <button className="random-btn-fixed" onClick={handleRandomClick}>
+      {/* <button className="random-btn-fixed" onClick={handleRandomClick}>
         <FontAwesomeIcon icon={faDice} size="sm" color="#7c3aed" style={{marginRight: '0.5rem'}} />
         Random
-      </button>
+      </button> */}
       {showModal && randomQuestion && (
         <div className="modal-bg">
           <div className="modal-card">
             <button className="modal-close" onClick={handleCloseModal}>
               &#10005;
             </button>
-            <div className="movie-clue">
+            <div style={{
+              background: '#fff',
+              borderLeft: '6px solid #2ecc40',
+              borderRadius: '18px',
+              padding: '24px 28px 20px 28px',
+              marginTop: '8px',
+              marginBottom: '10px',
+              boxShadow: '0 2px 12px #e0e0e0',
+              color: '#222',
+              fontSize: '1.13rem',
+              position: 'relative',
+              maxWidth: '98%',
+              overflowWrap: 'break-word',
+            }}>
               <div className='qsdiv'>
-                <div className="Question-title">{randomQuestion.name}</div>
+                <div className="Question-title" style={{ fontWeight: 700, fontSize: '1.18rem', color: '#219150', marginBottom: '10px', letterSpacing: '0.5px' }}>{randomQuestion.name}</div>
               </div>
-              <div className="Question-text" dangerouslySetInnerHTML={{__html: randomQuestion.Question.replaceAll('\n', '<br />')}} />
+              <div className="Question-text" style={{ color: '#222', fontSize: '1.08rem' }} dangerouslySetInnerHTML={{__html: (randomQuestion.Explanation || randomQuestion.Question || '').replaceAll('\n', '<br />')}} />
             </div>
             <div style={{display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '1.2rem'}}>
               {!showRandomAnswer && (
@@ -94,8 +108,22 @@ function Makeitfun() {
                   Show Answer
                 </button>
               ) : (
-                <div className="answer-box-fixed">
-                  <span className="answer-label">Answer:</span> <span dangerouslySetInnerHTML={{__html: randomQuestion.Answer.replaceAll('\n', '<br />')}} />
+                <div style={{
+                  background: '#fff',
+                  borderLeft: '6px solid #2ecc40',
+                  borderRadius: '18px',
+                  padding: '24px 28px 20px 28px',
+                  marginTop: '8px',
+                  marginBottom: '10px',
+                  boxShadow: '0 2px 12px #e0e0e0',
+                  color: '#222',
+                  fontSize: '1.13rem',
+                  position: 'relative',
+                  maxWidth: '98%',
+                  overflowWrap: 'break-word',
+                }}>
+                  <div style={{ fontWeight: 700, fontSize: '1.18rem', color: '#219150', marginBottom: '14px', letterSpacing: '0.5px' }}>Answer:</div>
+                  <div style={{ background: '#fff', borderRadius: '8px', padding: '2px 0', color: '#222', fontSize: '1.08rem', marginTop: '2px' }} dangerouslySetInnerHTML={{__html: (randomQuestion.Answer || '').replaceAll('\n', '<br />')}} />
                 </div>
               )}
               <button className="zoom-btn" title="Zoom" style={{marginRight: '12px'}}>
@@ -132,8 +160,21 @@ function Makeitfun() {
                       <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '20px', height: '20px'}} />
                       Share
                     </button>
-                    <span
-                      className={`btn${isAnswerShown ? ' btn-green' : ''}`}
+                    <button
+                      style={{
+                        background: isAnswerShown ? 'linear-gradient(90deg, #43c6ac 0%, #667eea 100%)' : 'linear-gradient(90deg, #667eea 0%, #43c6ac 100%)',
+                        color: '#fff',
+                        border: 'none',
+                        borderRadius: '8px',
+                        padding: '0.5rem 1.3rem',
+                        fontWeight: 600,
+                        fontSize: '1rem',
+                        boxShadow: isAnswerShown ? '0 2px 8px rgba(67, 198, 172, 0.15)' : '0 2px 8px rgba(102, 126, 234, 0.15)',
+                        cursor: 'pointer',
+                        transition: 'all 0.3s',
+                        outline: 'none',
+                        marginLeft: '0.5rem',
+                      }}
                       onClick={() => {
                         setDisplayAnswer((prev) => ({
                           ...prev,
@@ -142,14 +183,58 @@ function Makeitfun() {
                       }}
                     >
                       {isAnswerShown ? 'Hide answer' : 'Show answer'}
-                    </span>
+                    </button>
                   </div>
                 </div>
-                <div className="Question-text" dangerouslySetInnerHTML={{__html: item.Question.replaceAll('\n', '<br />')}} />
+                <div className="Question-text" dangerouslySetInnerHTML={{__html: (item.Explanation || '').replaceAll('\n', '<br />')}} />
+                {item.img && item.img !== 'null' && (
+                  <div style={{ margin: '16px 0' }}>
+                    {!DisplayImage[startIdx + idx] ? (
+                      <button
+                        style={{background: '#667eea', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.5rem 1.2rem', fontWeight: '600', cursor: 'pointer'}}
+                        onClick={() => setDisplayImage((prev) => ({ ...prev, [startIdx + idx]: true }))}
+                      >
+                        Show Image
+                      </button>
+                    ) : (
+                      <img src={item.img} alt="Puzzle visual" style={{ width: 500, height: 300, objectFit: 'cover', borderRadius: '10px', boxShadow: '0 2px 8px #ccc' }} />
+                    )}
+                  </div>
+                )}
               </div>
               {isAnswerShown && (
-                <div className="answer-box-fixed">
-                  <span className="answer-label">Answer:</span> <span dangerouslySetInnerHTML={{__html: item.Answer.replaceAll('\n', '<br />')}} />
+                <div style={{
+                  background: '#fff',
+                  borderLeft: '6px solid #2ecc40', // left-side green border
+                  borderRadius: '18px',
+                  padding: '24px 28px 20px 28px',
+                  marginTop: '18px',
+                  marginBottom: '10px',
+                  boxShadow: '0 2px 12px #e0e0e0',
+                  color: '#222',
+                  fontSize: '1.13rem',
+                  position: 'relative',
+                  maxWidth: '98%',
+                  overflowWrap: 'break-word',
+                }}>
+                  <div style={{
+                    fontWeight: 700,
+                    fontSize: '1.18rem',
+                    color: '#219150',
+                    marginBottom: '14px',
+                    letterSpacing: '0.5px',
+                  }}>
+                    Answer:
+                  </div>
+                  <div style={{
+                    background: '#fff',
+                    borderRadius: '8px',
+                    padding: '2px 0',
+                    color: '#222',
+                    fontSize: '1.08rem',
+                    marginTop: '2px',
+                  }}
+                  dangerouslySetInnerHTML={{__html: (item.Answer || '').replaceAll('\n', '<br />')}} />
                 </div>
               )}
             </div>
