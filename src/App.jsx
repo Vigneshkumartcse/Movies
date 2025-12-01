@@ -37,6 +37,10 @@ function App() {
           data="🧩 Solve Mystery" 
           onClick={() => { navigate('/Mystery') }} 
         />
+        <Card 
+          data="🌍 Guess the Country" 
+          onClick={() => { navigate('/GuessCountry') }} 
+        />
       
       </div>
 
