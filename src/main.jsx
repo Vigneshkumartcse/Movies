@@ -11,6 +11,7 @@ import Nav from './Nav.jsx'
 import Detective from './Detective.jsx'
 import Login from './Login.jsx'
 import GuessCountry from './GuessCountry.jsx'
+import GuessSong from './GuessSong.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/mystery" element={<Detective />} />
         <Route path="/login" element={<Login />} />
         <Route path="/GuessCountry" element={<GuessCountry />} />
+        <Route path="/GuessSong" element={<GuessSong />} />
        
       </Routes>
     </BrowserRouter>
