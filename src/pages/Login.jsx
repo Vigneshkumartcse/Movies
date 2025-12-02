@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import app from "./Firebase";
+import app from "../config/Firebase";
 
 export default function GoogleLogin() {
   const [loading, setLoading] = useState(false);

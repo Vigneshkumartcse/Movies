@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Load from './Load';
+import Load from '../common/Load';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBook, faUsers, faLightbulb, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 

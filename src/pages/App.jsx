@@ -1,6 +1,6 @@
 
-import './App.css';
-import Card from './Card.jsx';
+import '../styles/App.css';
+import Card from '../components/common/Card.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function App() {

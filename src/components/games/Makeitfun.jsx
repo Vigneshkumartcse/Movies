@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
-import Load from './Load';
+import Load from '../common/Load';
 
 function Makeitfun() {
   function handleModalRandom() {

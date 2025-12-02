@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import "./App.css";
-import Load from "./Load.jsx";
-import image from "../public/image.png";
+import React,{useState,useEffect} from 'react'
 
-function MovieGuess() {
-  const [movies, setMovies] = useState([]);
-  const [movieIndex, setMovieIndex] = useState(0);
+import Load from '../common/Load';
+function GuessCrickter() {
+ const [cricketers, setCricketers] = useState([]);
+  const [cricketerIndex, setCricketerIndex] = useState(0);
   const [clueIndex, setClueIndex] = useState(0);
-  const [userGuess, setUserGuess] = useState("");
+  const [userGuess, setUserGuess] = useState('');
   const [isCorrect, setIsCorrect] = useState(false);
   const [showNext, setShowNext] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [score, setScore] = useState(0);
   const cluePoints = [5, 4, 3, 2, 1];
 
@@ -22,45 +20,41 @@ function MovieGuess() {
     return array;
   }
 
-  async function fetchMovies() {
-    const response = await fetch("https://guessmovie-4.onrender.com/movies");
+  async function fetchCricketers() {
+    const response = await fetch('https://guessmovie-4.onrender.com/cricket');
     const data = await response.json();
-    setMovies(shuffleArray(data));
+    setCricketers(shuffleArray(data));
   }
 
   useEffect(() => {
-    fetchMovies();
+    fetchCricketers();
   }, []);
 
-  if (!movies.length) {
-    return (
-      <div>
-        <Load />
-      </div>
-    );
+  if (!cricketers.length) {
+    return <div ><Load/></div>;
   }
 
-  const currentMovie = movies[movieIndex];
-  const clues = currentMovie.clue;
+  const currentCricketer = cricketers[cricketerIndex];
+  const clues = currentCricketer.clue;
 
   const handleInputChange = (e) => {
     setUserGuess(e.target.value);
-    setMessage("");
+    setMessage('');
   };
 
   const handleSubmit = () => {
-    const answer = currentMovie && currentMovie.name ? currentMovie.name : "";
+    const answer = currentCricketer && currentCricketer.name ? currentCricketer.name : '';
     if (userGuess.trim().toLowerCase() === answer.trim().toLowerCase()) {
       setIsCorrect(true);
       setShowNext(true);
-      setMessage("You are correct!");
+      setMessage('You are correct!');
       // Award points based on clueIndex
       const points = cluePoints[clueIndex] || 1;
-      setScore((prev) => prev + points);
+      setScore(prev => prev + points);
     } else {
       if (clueIndex < clues.length - 1) {
         setClueIndex(clueIndex + 1);
-        setMessage("Try again! Here is another clue.");
+        setMessage('Try again! Here is another clue.');
       } else {
         setMessage(`No more clues! The answer was: ${answer}`);
         setShowNext(true);
@@ -68,21 +62,21 @@ function MovieGuess() {
     }
   };
 
-  const handleNextMovie = () => {
-    setMovieIndex(movieIndex + 1);
+  const handleNextCricketer = () => {
+    setCricketerIndex(cricketerIndex + 1);
     setClueIndex(0);
-    setUserGuess("");
+    setUserGuess('');
     setIsCorrect(false);
     setShowNext(false);
-    setMessage("");
+    setMessage('');
   };
 
-  if (movieIndex >= movies.length) {
+  if (cricketerIndex >= cricketers.length) {
     return (
       <div className="game-over-container">
         <div className="game-over-card">
           <h2>Game Over!</h2>
-          <p>You have guessed all movies.</p>
+          <p>You have guessed all cricketers.</p>
         </div>
       </div>
     );
@@ -90,22 +84,14 @@ function MovieGuess() {
 
   return (
     <div className="cric-bg">
-     
       <div className="score-bar-fixed">
-           <button style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            Latest
-            <img src={image} alt="AI Icon" style={{ width: 24, height: 24 }} />
-          </button>
-          <span className="score-label" style={{ marginLeft: '24px' }}>Score</span>
+        <span className="score-label">Score</span>
         <span className="score-value">
-          <span role="img" aria-label="coin" className="coin-icon">
-            🪙
-          </span>{" "}
-          {score}
+          <span role="img" aria-label="coin" className="coin-icon">🪙</span> {score}
         </span>
       </div>
       <div className="movie-card">
-        <h1 className="title">🎬 Guess the Movie</h1>
+        <h1 className="title">🎬 Guess the Cricketer</h1>
         <div style={{
           background: 'linear-gradient(135deg, #f3f4f8 0%, #e0e7ff 100%)',
           borderRadius: '16px',
@@ -125,7 +111,7 @@ function MovieGuess() {
             <span
               style={{ fontSize: '1.13rem', color: '#232526', lineHeight: 1.7 }}
               dangerouslySetInnerHTML={{
-                __html: clues[clueIndex].replaceAll("/n", "<br />"),
+                __html: clues[clueIndex].replaceAll('/n', '<br />'),
               }}
             />
           </div>
@@ -149,29 +135,20 @@ function MovieGuess() {
           <button
             className="next-btn"
             style={{ background: 'linear-gradient(90deg, #e74c3c 0%, #e67e22 100%)', color: '#fff', fontWeight: 600 }}
-            onClick={handleNextMovie}
-            disabled={showNext || movieIndex >= movies.length - 1}
+            onClick={handleNextCricketer}
+            disabled={showNext || cricketerIndex >= cricketers.length - 1}
           >
             Skip
           </button>
         </div>
-          {showNext && movieIndex < movies.length - 1 && (
-          <button className="next-btn" onClick={handleNextMovie}>
-            Next Movie
-          </button>
+        {message && <p className={`message ${isCorrect ? 'correct' : 'wrong'}`} dangerouslySetInnerHTML={{__html: message.replaceAll('/n', '<br />')}} />}
+        {showNext && cricketerIndex < cricketers.length - 1 && (
+          <button className="next-btn" onClick={handleNextCricketer}>Next Cricketer</button>
         )}
-        {message && (
-          <p
-            className={`message ${isCorrect ? "correct" : "wrong"}`}
-            dangerouslySetInnerHTML={{
-              __html: message.replaceAll("/n", "<br />"),
-            }}
-          />
-        )}
-      
       </div>
     </div>
   );
+
 }
 
-export default MovieGuess;
+export default GuessCrickter
