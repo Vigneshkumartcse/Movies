@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDice, faSearchPlus } from '@fortawesome/free-solid-svg-icons';
 import Load from '../common/Load';
+import GameNavbar from '../common/GameNavbar';
+import { useNavigate } from 'react-router-dom';
 
 function Makeitfun() {
+  const navigate = useNavigate();
+  
   function handleModalRandom() {
     if (Question.length > 0) {
       const idx = Math.floor(Math.random() * Question.length);
@@ -66,11 +70,20 @@ function Makeitfun() {
   }
 
   return (
-    <div className="cric-bg">
-      {/* <button className="random-btn-fixed" onClick={handleRandomClick}>
-        <FontAwesomeIcon icon={faDice} size="sm" color="#7c3aed" style={{marginRight: '0.5rem'}} />
-        Random
-      </button> */}
+    <div style={{
+      minHeight: '100vh',
+      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      paddingTop: '4.5rem',
+      paddingBottom: '2rem',
+      paddingLeft: '1.5rem',
+      paddingRight: '1.5rem'
+    }}>
+      <GameNavbar 
+        gameName="Brain Teasers" 
+        gameIcon="🧩"
+        onBack={() => navigate('/')}
+      />
+      
       {showModal && randomQuestion && (
         <div className="modal-bg">
           <div className="modal-card">
@@ -134,23 +147,43 @@ function Makeitfun() {
           </div>
         </div>
       )}
-      <div className="Qs-card">
-        <div className="page-header">
-          <h1 className="page-title">🧠 Brain Teasers & Puzzles</h1>
-          <p className="page-subtitle">Challenge yourself with these mind-bending questions!</p>
-        </div>
+      <div style={{
+        maxWidth: '85%',
+        width: '85%',
+        margin: '0 auto',
+        padding: '2rem'
+      }}>
         {currentQuestions.map((item, idx) => {
           const isAnswerShown = !!DisplayAnswer[startIdx + idx];
           return (
             <div key={startIdx + idx} style={{position: 'relative', marginBottom: '2.5rem'}}>
-              <div className={`movie-clue`}>
-                <div className='qsdiv'>
-                  <div className="Question-title">{item.name}</div>
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.98)',
+                backdropFilter: 'blur(10px)',
+                borderRadius: '20px',
+                padding: '2rem 2.5rem',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
+                border: '1px solid rgba(255, 255, 255, 0.2)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  marginBottom: '1.5rem',
+                  flexWrap: 'wrap',
+                  gap: '1rem'
+                }}>
+                  <div style={{
+                    fontSize: '1.4rem',
+                    fontWeight: '700',
+                    color: '#2d3748',
+                    flex: '1'
+                  }}>{item.name}</div>
                   <div style={{display: 'inline-flex', alignItems: 'center', gap: '10px'}}>
                     <button
                       className="share-btn"
                       title="Share on WhatsApp"
-                      style={{background: '#25D366', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.4rem 1rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.1rem'}}
+                      style={{background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)', color: '#fff', border: 'none', borderRadius: '10px', padding: '0.6rem 1.2rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)', transition: 'all 0.3s'}}
                       onClick={() => {
                         const url = window.location.href;
                         const text = encodeURIComponent(`${item.Question}\nPlay on: ${url}`);
@@ -162,18 +195,17 @@ function Makeitfun() {
                     </button>
                     <button
                       style={{
-                        background: isAnswerShown ? 'linear-gradient(90deg, #43c6ac 0%, #667eea 100%)' : 'linear-gradient(90deg, #667eea 0%, #43c6ac 100%)',
+                        background: isAnswerShown ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         color: '#fff',
                         border: 'none',
-                        borderRadius: '8px',
-                        padding: '0.5rem 1.3rem',
+                        borderRadius: '10px',
+                        padding: '0.6rem 1.5rem',
                         fontWeight: 600,
                         fontSize: '1rem',
-                        boxShadow: isAnswerShown ? '0 2px 8px rgba(67, 198, 172, 0.15)' : '0 2px 8px rgba(102, 126, 234, 0.15)',
+                        boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
                         cursor: 'pointer',
                         transition: 'all 0.3s',
-                        outline: 'none',
-                        marginLeft: '0.5rem',
+                        outline: 'none'
                       }}
                       onClick={() => {
                         setDisplayAnswer((prev) => ({
@@ -186,7 +218,12 @@ function Makeitfun() {
                     </button>
                   </div>
                 </div>
-                <div className="Question-text" dangerouslySetInnerHTML={{__html: (item.Explanation || '').replaceAll('\n', '<br />')}} />
+                <div style={{
+                  fontSize: '1.1rem',
+                  color: '#4a5568',
+                  lineHeight: '1.8',
+                  marginBottom: '1rem'
+                }} dangerouslySetInnerHTML={{__html: (item.Explanation || '').replaceAll('\n', '<br />')}} />
                 {item.img && item.img !== 'null' && (
                   <div style={{ margin: '16px 0' }}>
                     {!DisplayImage[startIdx + idx] ? (
@@ -204,35 +241,35 @@ function Makeitfun() {
               </div>
               {isAnswerShown && (
                 <div style={{
-                  background: '#fff',
-                  borderLeft: '6px solid #2ecc40', // left-side green border
-                  borderRadius: '18px',
-                  padding: '24px 28px 20px 28px',
-                  marginTop: '18px',
-                  marginBottom: '10px',
-                  boxShadow: '0 2px 12px #e0e0e0',
-                  color: '#222',
-                  fontSize: '1.13rem',
+                  background: 'rgba(212, 248, 232, 0.95)',
+                  backdropFilter: 'blur(10px)',
+                  borderLeft: '6px solid #10b981',
+                  borderRadius: '20px',
+                  padding: '2rem 2.5rem',
+                  marginTop: '1.5rem',
+                  boxShadow: '0 8px 24px rgba(16, 185, 129, 0.2)',
+                  color: '#1a5f4f',
+                  fontSize: '1.1rem',
                   position: 'relative',
-                  maxWidth: '98%',
-                  overflowWrap: 'break-word',
+                  border: '1px solid rgba(16, 185, 129, 0.2)'
                 }}>
                   <div style={{
                     fontWeight: 700,
-                    fontSize: '1.18rem',
-                    color: '#219150',
-                    marginBottom: '14px',
+                    fontSize: '1.3rem',
+                    color: '#059669',
+                    marginBottom: '1rem',
                     letterSpacing: '0.5px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
                   }}>
-                    Answer:
+                    ✓ Answer:
                   </div>
                   <div style={{
-                    background: '#fff',
-                    borderRadius: '8px',
-                    padding: '2px 0',
-                    color: '#222',
-                    fontSize: '1.08rem',
-                    marginTop: '2px',
+                    color: '#1a5f4f',
+                    fontSize: '1.1rem',
+                    lineHeight: '1.7',
+                    fontWeight: '500'
                   }}
                   dangerouslySetInnerHTML={{__html: (item.Answer || '').replaceAll('\n', '<br />')}} />
                 </div>
@@ -240,7 +277,7 @@ function Makeitfun() {
             </div>
           );
         })}
-        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem', gap: '1.5rem' }}>
+        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '3rem', gap: '1.5rem' }}>
           <button
             className="nav-arrow"
             onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
@@ -248,7 +285,7 @@ function Makeitfun() {
           >
             &#8592; Prev
           </button>
-          <span style={{ fontWeight: 600, fontSize: '0.95rem', color: '#667eea' }}>
+          <span style={{ fontWeight: 700, fontSize: '1rem', color: '#fff', background: 'rgba(255, 255, 255, 0.2)', padding: '0.5rem 1rem', borderRadius: '8px', backdropFilter: 'blur(10px)' }}>
             {page + 1} / {totalPages}
           </span>
           <button
