@@ -12,7 +12,17 @@ function GuessSong() {
 
   useEffect(() => {
     fetchSongs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
 
   async function fetchSongs() {
     setLoading(true);
@@ -20,7 +30,7 @@ function GuessSong() {
       const response = await fetch("https://guessmovie-4.onrender.com/songs");
       const data = await response.json();
       console.log("Fetched songs:", data);
-      setSongs(data);
+      setSongs(shuffleArray(data));
     } catch (error) {
       console.error("Error fetching songs:", error);
       setSongs([]);
@@ -310,9 +320,26 @@ function GuessSong() {
           </div>
         </div>
 
-        {/* Show Answer Button */}
+        {/* Show Answer and Skip Buttons */}
         {!showAnswer && (
-          <div style={{display:'flex', justifyContent:'center', marginBottom:'1.6rem'}}>
+          <div style={{display:'flex', justifyContent:'center', gap:'1rem', marginBottom:'1.6rem', flexWrap:'wrap'}}>
+            <button
+              onClick={handleNextSong}
+              disabled={songIndex >= songs.length - 1}
+              style={{
+                background: 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)',
+                color: '#fff', fontWeight: 700, fontSize:'0.9rem',
+                border:'none', borderRadius:'14px', padding:'0.85rem 2rem',
+                boxShadow:'0 6px 20px rgba(231,76,60,0.3)', 
+                cursor: songIndex >= songs.length - 1 ? 'not-allowed' : 'pointer',
+                opacity: songIndex >= songs.length - 1 ? 0.6 : 1,
+                transition:'all 0.3s ease'
+              }}
+              onMouseEnter={(e)=>{if(songIndex < songs.length - 1) e.currentTarget.style.transform='translateY(-2px)';}}
+              onMouseLeave={(e)=>{e.currentTarget.style.transform='translateY(0)';}}
+            >
+              ⏭️ Skip
+            </button>
             <button
               onClick={handleShowAnswer}
               style={{
