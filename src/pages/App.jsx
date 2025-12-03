@@ -290,6 +290,10 @@ function App() {
           data="🎵 Guess the Song" 
           onClick={() => { navigate('/GuessSong') }} 
         />
+        <Card 
+          data="📚 GK Quiz" 
+          onClick={() => { navigate('/GK') }} 
+        />
       
       </div>
 

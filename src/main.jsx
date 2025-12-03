@@ -12,6 +12,7 @@ import Detective from './components/games/Detective.jsx'
 import Login from './pages/Login.jsx'
 import GuessCountry from './components/games/GuessCountry.jsx'
 import GuessSong from './components/games/GuessSong.jsx'
+import GK from './components/games/GK.jsx'
 
 
 createRoot(document.getElementById('root')).render(
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/GuessCountry" element={<GuessCountry />} />
         <Route path="/GuessSong" element={<GuessSong />} />
+        <Route path="/GK" element={<GK />} />
        
       </Routes>
     </BrowserRouter>

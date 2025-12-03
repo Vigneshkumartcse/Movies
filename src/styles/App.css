@@ -1455,6 +1455,18 @@ button{
  100% {-webkit-mask-size: auto,25px 25px,25px 25px,30px 30px,30px 30px,25px 25px,25px 25px,25px 25px,200% 200%}
 }
 
+/* Dropdown Slide Animation */
+@keyframes dropdownSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Professional Pagination Styles */
 .nav-arrow {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
