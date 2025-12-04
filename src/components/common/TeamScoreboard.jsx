@@ -77,17 +77,25 @@ function TeamScoreboard({ numberOfTeams = 2, currentTeamIndex = 0, teamScores = 
   return (
     <div style={{
       position: 'fixed',
-      top: '80px',
-      left: '10px',
-      zIndex: 9999,
+      top: 'clamp(70px, 15vw, 80px)',
+      left: 'clamp(5px, 2vw, 10px)',
+      zIndex: 10000,
       animation: 'slideInLeft 0.3s ease-out'
     }}>
-      <div style={{
+      <style>{`
+        @media (max-width: 768px) {
+          .team-scoreboard-mobile {
+            width: auto !important;
+            max-width: calc(100vw - 20px) !important;
+          }
+        }
+      `}</style>
+      <div className="team-scoreboard-mobile" style={{
         background: 'rgba(255, 255, 255, 0.95)',
         backdropFilter: 'blur(20px)',
         borderRadius: '16px',
-        padding: isMinimized ? '0.8rem' : '1rem',
-        width: isMinimized ? 'auto' : '200px',
+        padding: isMinimized ? '0.8rem' : 'clamp(0.6rem, 2vw, 1rem)',
+        width: isMinimized ? 'auto' : 'clamp(180px, 40vw, 200px)',
         maxHeight: '85vh',
         overflowY: 'auto',
         boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',

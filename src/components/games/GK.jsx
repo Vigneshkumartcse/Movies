@@ -562,12 +562,33 @@ function GK() {
         showAutoPlay={true}
       />
 
+      {/* Backdrop for dropdowns */}
+      {(showCategoryDropdown || showRegionDropdown) && (
+        <div 
+          onClick={() => {
+            setShowCategoryDropdown(false);
+            setShowRegionDropdown(false);
+          }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0, 0, 0, 0.4)',
+            backdropFilter: 'blur(2px)',
+            zIndex: 998,
+            animation: 'fadeIn 0.2s ease-out'
+          }}
+        />
+      )}
+
       {/* Category & Region Dropdown */}
       <div style={{
         position: 'fixed',
         top: '80px',
         right: '20px',
-        zIndex: 999,
+        zIndex: 997,
         display: 'flex',
         gap: '10px'
       }}>
@@ -583,8 +604,8 @@ function GK() {
               backdropFilter: 'blur(10px)',
               border: '2px solid rgba(102, 126, 234, 0.3)',
               borderRadius: '10px',
-              padding: '0.6rem 1rem',
-              fontSize: '0.85rem',
+              padding: 'clamp(0.5rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1rem)',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)',
               fontWeight: 700,
               color: '#667eea',
               cursor: 'pointer',
@@ -593,7 +614,8 @@ function GK() {
               textTransform: 'capitalize',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem'
+              gap: '0.5rem',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
@@ -661,8 +683,8 @@ function GK() {
               backdropFilter: 'blur(10px)',
               border: '2px solid rgba(102, 126, 234, 0.3)',
               borderRadius: '10px',
-              padding: '0.6rem 1rem',
-              fontSize: '0.85rem',
+              padding: 'clamp(0.5rem, 2vw, 0.6rem) clamp(0.8rem, 3vw, 1rem)',
+              fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)',
               fontWeight: 700,
               color: '#667eea',
               cursor: 'pointer',
@@ -671,7 +693,8 @@ function GK() {
               textTransform: 'capitalize',
               display: 'flex',
               alignItems: 'center',
-              gap: '0.5rem'
+              gap: '0.5rem',
+              whiteSpace: 'nowrap'
             }}
             onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
             onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}

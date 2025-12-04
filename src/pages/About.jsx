@@ -8,6 +8,7 @@ export default function About() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -38,13 +39,13 @@ export default function About() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 2.5rem',
+        padding: '0 clamp(1rem, 4vw, 2.5rem)',
         zIndex: 1000,
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
       }}>
         {/* Logo */}
         <div style={{
-          fontSize: '1.5rem',
+          fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
           fontWeight: '800',
           color: '#fff',
           display: 'flex',

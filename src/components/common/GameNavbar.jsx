@@ -44,7 +44,7 @@ function GameNavbar({
         <span style={{fontSize:'1.3rem'}}>{gameIcon}</span>
         <h2 style={{
           margin:0,
-          fontSize:'1rem', fontWeight:800,
+          fontSize:'clamp(0.75rem, 3vw, 1rem)', fontWeight:800,
           color:'#667eea',
           background:'linear-gradient(90deg, #667eea, #764ba2)',
           WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', 
@@ -53,6 +53,21 @@ function GameNavbar({
           overflow:'hidden',
           textOverflow:'ellipsis'
         }}>{gameName}</h2>
+      </div>
+
+      {/* Score Badge - Always visible on mobile */}
+      <div className="mobile-score-display" style={{display:'none'}}>
+        {showScore && (
+          <div style={{
+            background:'linear-gradient(135deg, #667eea, #764ba2)',
+            borderRadius:'10px', padding:'0.5rem 0.9rem',
+            boxShadow:'0 3px 12px rgba(102,126,234,0.25)',
+            display:'flex', alignItems:'center', gap:'6px'
+          }}>
+            <span style={{fontSize:'1rem'}}>🪙</span>
+            <span style={{color:'#fff', fontWeight:800, fontSize:'0.85rem'}}>{score}</span>
+          </div>
+        )}
       </div>
 
       {/* Desktop Menu */}
@@ -207,7 +222,7 @@ function GameNavbar({
           </button>
           {gamesMenuOpen && (
             <div style={{
-              position:'absolute', top:'110%', right:0, zIndex: 1000,
+              position:'absolute', top:'110%', right:0, zIndex: 997,
               background:'rgba(255,255,255,0.98)', backdropFilter:'blur(10px)',
               borderRadius:'13px', padding:'8px',
               boxShadow:'0 12px 32px rgba(0,0,0,0.2)', minWidth:'200px',
@@ -273,7 +288,7 @@ function GameNavbar({
                 position:'absolute',
                 top:'110%',
                 right:0,
-                zIndex: 99999,
+                zIndex: 997,
                 background:'rgba(255,255,255,0.98)',
                 backdropFilter:'blur(20px)',
                 borderRadius:'16px',
@@ -827,6 +842,9 @@ function GameNavbar({
         }
         .mobile-menu {
           display: block !important;
+        }
+        .mobile-score-display {
+          display: flex !important;
         }
       }
       @media (min-width: 769px) {

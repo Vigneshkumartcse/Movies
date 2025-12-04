@@ -13,6 +13,9 @@ function MovieGuess() {
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
   const cluePoints = [5, 4, 3, 2, 1];
+  
+  // Add mobile responsive styles
+  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -135,7 +138,7 @@ function MovieGuess() {
     <div style={{
       minHeight:'100vh',
       background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      padding:'4.8rem 0.8rem 1.6rem 0.8rem',
+      padding:'clamp(4rem, 10vw, 4.8rem) clamp(0.5rem, 2vw, 0.8rem) 1.6rem',
       display:'flex', justifyContent:'center', alignItems:'flex-start'
     }}>
       <GameNavbar 
@@ -149,11 +152,11 @@ function MovieGuess() {
       
       <div style={{
         background:'rgba(255,255,255,0.95)', backdropFilter:'blur(20px)',
-        borderRadius:'22px', padding:'2rem', maxWidth:'560px', width:'100%',
+        borderRadius:'22px', padding:'clamp(1rem, 4vw, 2rem)', maxWidth:'560px', width:'100%',
         boxShadow:'0 20px 48px rgba(0,0,0,0.25)', border:'1px solid rgba(255,255,255,0.3)'
       }}>
         <h1 style={{
-          fontSize:'1.76rem', fontWeight:800, textAlign:'center', marginBottom:'1.6rem',
+          fontSize:'clamp(1.3rem, 4vw, 1.76rem)', fontWeight:800, textAlign:'center', marginBottom:'1.6rem',
           background:'linear-gradient(90deg, #667eea, #764ba2)',
           WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent',
           backgroundClip:'text', display:'flex', alignItems:'center', justifyContent:'center', gap:'10px'
@@ -179,52 +182,73 @@ function MovieGuess() {
           }}>
             <div style={{
               display:'flex', 
-              alignItems:'center', 
-              justifyContent:'space-between', 
+              flexDirection:'column',
+              gap:'0.8rem',
               marginBottom:'0.8rem'
             }}>
-              <div style={{flex:1}}></div>
-              <div style={{fontSize:'1rem', color:'rgba(255,255,255,0.8)', fontWeight:600}}>
-                💡 Clue {clueIndex + 1} of {clues.length}
+              <div style={{
+                fontSize:'clamp(0.85rem, 2.5vw, 1rem)', 
+                color:'rgba(255,255,255,0.9)', 
+                fontWeight:700,
+                textAlign:'center',
+                display:'flex',
+                alignItems:'center',
+                justifyContent:'center',
+                gap:'0.5rem'
+              }}>
+                <span style={{fontSize:'1.2rem'}}>💡</span>
+                Clue {clueIndex + 1} of {clues.length}
               </div>
-              <div style={{flex:1, display:'flex', justifyContent:'flex-end'}}>
-                {clueIndex < clues.length - 1 && !showNext && (
-                  <button
-                    onClick={() => {
-                      setClueIndex(clueIndex + 1);
-                      setMessage("");
-                    }}
-                    style={{
-                      background:'rgba(255,255,255,0.25)',
-                      backdropFilter:'blur(10px)',
-                      border:'1.5px solid rgba(255,255,255,0.4)',
-                      borderRadius:'10px',
-                      padding:'0.5rem 1rem',
-                      color:'#fff',
-                      fontSize:'0.8rem',
-                      fontWeight:700,
-                      cursor:'pointer',
-                      transition:'all 0.3s ease',
-                      display:'flex',
-                      alignItems:'center',
-                      gap:'0.4rem',
-                      boxShadow:'0 4px 12px rgba(0,0,0,0.15)'
-                    }}
-                    onMouseEnter={(e)=>{
-                      e.currentTarget.style.background='rgba(255,255,255,0.35)';
-                      e.currentTarget.style.transform='translateY(-2px) translateX(2px)';
-                      e.currentTarget.style.boxShadow='0 6px 16px rgba(0,0,0,0.2)';
-                    }}
-                    onMouseLeave={(e)=>{
-                      e.currentTarget.style.background='rgba(255,255,255,0.25)';
-                      e.currentTarget.style.transform='translateY(0) translateX(0)';
-                      e.currentTarget.style.boxShadow='0 4px 12px rgba(0,0,0,0.15)';
-                    }}
-                  >
-                    Next Clue →
-                  </button>
-                )}
-              </div>
+              {clueIndex < clues.length - 1 && !showNext && (
+                <button
+                  onClick={() => {
+                    setClueIndex(clueIndex + 1);
+                    setMessage("");
+                  }}
+                  style={{
+                    background:'linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2))',
+                    backdropFilter:'blur(10px)',
+                    border:'2px solid rgba(255,255,255,0.5)',
+                    borderRadius:'12px',
+                    padding:'clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)',
+                    color:'#fff',
+                    fontSize:'clamp(0.85rem, 2.5vw, 0.95rem)',
+                    fontWeight:800,
+                    cursor:'pointer',
+                    transition:'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    display:'flex',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    gap:'0.5rem',
+                    boxShadow:'0 4px 15px rgba(0,0,0,0.2)',
+                    width:'100%',
+                    maxWidth:'200px',
+                    margin:'0 auto',
+                    textShadow:'0 2px 4px rgba(0,0,0,0.2)',
+                    letterSpacing:'0.5px',
+                    minHeight:'44px'
+                  }}
+                  onMouseEnter={(e)=>{
+                    e.currentTarget.style.background='linear-gradient(135deg, rgba(255,255,255,0.4), rgba(255,255,255,0.3))';
+                    e.currentTarget.style.transform='translateY(-3px) scale(1.02)';
+                    e.currentTarget.style.boxShadow='0 6px 20px rgba(0,0,0,0.3)';
+                  }}
+                  onMouseLeave={(e)=>{
+                    e.currentTarget.style.background='linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2))';
+                    e.currentTarget.style.transform='translateY(0) scale(1)';
+                    e.currentTarget.style.boxShadow='0 4px 15px rgba(0,0,0,0.2)';
+                  }}
+                  onTouchStart={(e)=>{
+                    e.currentTarget.style.transform='scale(0.98)';
+                  }}
+                  onTouchEnd={(e)=>{
+                    e.currentTarget.style.transform='scale(1)';
+                  }}
+                >
+                  <span style={{fontSize:'1.1rem'}}>→</span>
+                  Next Clue
+                </button>
+              )}
             </div>
             <div style={{ 
               fontWeight: 700, 

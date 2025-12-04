@@ -11,6 +11,7 @@ function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const auth = getAuth(app);
@@ -41,13 +42,13 @@ function App() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 2.5rem',
+        padding: '0 clamp(1rem, 4vw, 2.5rem)',
         zIndex: 1000,
         boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)'
       }}>
         {/* Logo */}
         <div style={{
-          fontSize: '1.5rem',
+          fontSize: 'clamp(1.2rem, 3vw, 1.5rem)',
           fontWeight: '800',
           color: '#fff',
           display: 'flex',
@@ -58,8 +59,8 @@ function App() {
           🎮 BrainBuzz
         </div>
 
-        {/* Nav Links */}
-        <div style={{
+        {/* Desktop Nav Links */}
+        <div className="desktop-nav" style={{
           display: 'flex',
           alignItems: 'center',
           gap: '2rem'
@@ -254,10 +255,114 @@ function App() {
             </button>
           )}
         </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            display: 'none',
+            background: 'rgba(255, 255, 255, 0.2)',
+            border: '2px solid rgba(255, 255, 255, 0.3)',
+            borderRadius: '8px',
+            padding: '0.5rem',
+            cursor: 'pointer',
+            color: '#fff',
+            fontSize: '1.5rem'
+          }}
+        >
+          {mobileMenuOpen ? '✕' : '☰'}
+        </button>
       </nav>
 
-      <div className='landing-header' style={{ marginTop: '1rem' }}>
-        <h1 className='landing-title'>
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="mobile-menu" style={{
+          position: 'fixed',
+          top: '70px',
+          left: 0,
+          right: 0,
+          background: 'rgba(255, 255, 255, 0.98)',
+          backdropFilter: 'blur(20px)',
+          padding: '1rem',
+          zIndex: 999,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+          animation: 'slideDown 0.3s ease'
+        }}>
+          <Link to="/" onClick={() => setMobileMenuOpen(false)} style={{
+            display: 'block',
+            padding: '1rem',
+            color: '#667eea',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            borderBottom: '1px solid rgba(102, 126, 234, 0.1)'
+          }}>
+            <FaHome style={{marginRight: '0.5rem'}} /> Home
+          </Link>
+          <Link to="/about" onClick={() => setMobileMenuOpen(false)} style={{
+            display: 'block',
+            padding: '1rem',
+            color: '#667eea',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            borderBottom: '1px solid rgba(102, 126, 234, 0.1)'
+          }}>
+            <FaInfoCircle style={{marginRight: '0.5rem'}} /> About
+          </Link>
+          <Link to="/tricky" onClick={() => setMobileMenuOpen(false)} style={{
+            display: 'block',
+            padding: '1rem',
+            color: '#667eea',
+            textDecoration: 'none',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            borderBottom: '1px solid rgba(102, 126, 234, 0.1)'
+          }}>
+            <FaBrain style={{marginRight: '0.5rem'}} /> Puzzles
+          </Link>
+          {user ? (
+            <button onClick={() => { handleLogout(); setMobileMenuOpen(false); }} style={{
+              width: '100%',
+              padding: '1rem',
+              background: 'linear-gradient(135deg, #e74c3c, #c0392b)',
+              color: '#fff',
+              border: 'none',
+              borderRadius: '8px',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              marginTop: '0.5rem',
+              cursor: 'pointer'
+            }}>
+              <FaSignOutAlt style={{marginRight: '0.5rem'}} /> Logout
+            </button>
+          ) : (
+            <Link to="/login" onClick={() => setMobileMenuOpen(false)} style={{
+              display: 'block',
+              padding: '1rem',
+              background: 'linear-gradient(135deg, #667eea, #764ba2)',
+              color: '#fff',
+              textDecoration: 'none',
+              fontSize: '1.1rem',
+              fontWeight: '600',
+              borderRadius: '8px',
+              marginTop: '0.5rem',
+              textAlign: 'center'
+            }}>
+              Login
+            </Link>
+          )}
+        </div>
+      )}
+
+      <div className='landing-header' style={{ 
+        marginTop: '1rem',
+        padding: 'clamp(1rem, 3vw, 2rem)'
+      }}>
+        <h1 className='landing-title' style={{
+          fontSize: 'clamp(2rem, 5vw, 3.5rem)'
+        }}>
           Start Your Challenge
         </h1>
         <p className='landing-description'>
@@ -297,8 +402,191 @@ function App() {
       
       </div>
 
+      {/* Footer */}
+      <footer style={{
+        background: 'rgba(255, 255, 255, 0.1)',
+        backdropFilter: 'blur(20px)',
+        borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+        padding: 'clamp(2rem, 5vw, 3rem) 0 0 0',
+        marginTop: '4rem',
+        marginBottom: '0',
+        color: '#fff',
+        width: '100vw',
+        marginLeft: 'calc(-50vw + 50%)',
+        marginRight: 'calc(-50vw + 50%)'
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '2rem',
+          marginBottom: '2rem',
+          padding: '0 clamp(1rem, 4vw, 2.5rem)'
+        }}>
+          {/* About Section */}
+          <div>
+            <h3 style={{
+              fontSize: '1.2rem',
+              fontWeight: '800',
+              marginBottom: '1rem',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+              🎮 BrainBuzz
+            </h3>
+            <p style={{
+              fontSize: '0.9rem',
+              lineHeight: '1.6',
+              color: 'rgba(255, 255, 255, 0.9)',
+              textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+            }}>
+              Challenge your mind with exciting puzzles, quizzes, and brain games. Improve your knowledge while having fun!
+            </p>
+          </div>
 
-      
+          {/* Quick Links */}
+          <div>
+            <h4 style={{
+              fontSize: '1rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+              Quick Links
+            </h4>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.6rem'
+            }}>
+              <Link to="/" style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                transition: 'all 0.3s',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}>
+                🏠 Home
+              </Link>
+              <Link to="/about" style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                transition: 'all 0.3s',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}>
+                ℹ️ About
+              </Link>
+            </div>
+          </div>
+
+          {/* Popular Games */}
+          <div>
+            <h4 style={{
+              fontSize: '1rem',
+              fontWeight: '700',
+              marginBottom: '1rem',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
+            }}>
+              Popular Games
+            </h4>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.6rem'
+            }}>
+              <a onClick={() => navigate('/movieguess')} style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}>
+                🎬 Guess Movie
+              </a>
+              <a onClick={() => navigate('/GK')} style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}>
+                📚 GK Quiz
+              </a>
+              <a onClick={() => navigate('/tricky')} style={{
+                color: 'rgba(255, 255, 255, 0.9)',
+                textDecoration: 'none',
+                fontSize: '0.9rem',
+                cursor: 'pointer',
+                transition: 'all 0.3s',
+                textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateX(5px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.transform = 'translateX(0)';
+              }}>
+                🧩 Brain Puzzles
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+          paddingTop: '1.5rem',
+          paddingBottom: '1.5rem',
+          textAlign: 'center',
+          fontSize: '0.85rem',
+          color: 'rgba(255, 255, 255, 0.8)',
+          textShadow: '0 1px 4px rgba(0, 0, 0, 0.2)',
+          margin: '0',
+          padding: '1.5rem clamp(1rem, 4vw, 2.5rem)'
+        }}>
+          <p style={{ margin: '0.5rem 0' }}>
+            © {new Date().getFullYear()} BrainBuzz. All rights reserved.
+          </p>
+          <p style={{ margin: '0.5rem 0' }}>
+            Made with ❤️ for puzzle enthusiasts
+          </p>
+        </div>
+      </footer>
       
     </div>
   );

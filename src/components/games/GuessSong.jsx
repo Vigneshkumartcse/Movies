@@ -236,7 +236,7 @@ function GuessSong() {
               onMouseEnter={(e)=>{if(songIndex < songs.length - 1) e.currentTarget.style.transform='translateY(-2px)';}}
               onMouseLeave={(e)=>{e.currentTarget.style.transform='translateY(0)';}}
             >
-              ⏭️ Skip
+              ⏭️ Next
             </button>
             <button
               onClick={handleShowAnswer}

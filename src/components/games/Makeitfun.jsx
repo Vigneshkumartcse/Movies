@@ -148,10 +148,10 @@ function Makeitfun() {
         </div>
       )}
       <div style={{
-        maxWidth: '85%',
-        width: '85%',
+        maxWidth: '95%',
+        width: '95%',
         margin: '0 auto',
-        padding: '2rem'
+        padding: 'clamp(1rem, 4vw, 2rem)'
       }}>
         {currentQuestions.map((item, idx) => {
           const isAnswerShown = !!DisplayAnswer[startIdx + idx];
@@ -161,36 +161,50 @@ function Makeitfun() {
                 background: 'rgba(255, 255, 255, 0.98)',
                 backdropFilter: 'blur(10px)',
                 borderRadius: '20px',
-                padding: '2rem 2.5rem',
+                padding: 'clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2.5rem)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)',
                 border: '1px solid rgba(255, 255, 255, 0.2)'
               }}>
                 <div style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  marginBottom: '1.5rem',
-                  flexWrap: 'wrap',
-                  gap: '1rem'
+                  marginBottom: '1.2rem'
                 }}>
-                  <div style={{
-                    fontSize: '1.4rem',
-                    fontWeight: '700',
+                  <h2 style={{
+                    fontSize: 'clamp(1.1rem, 3.5vw, 1.4rem)',
+                    fontWeight: '800',
                     color: '#2d3748',
-                    flex: '1'
-                  }}>{item.name}</div>
-                  <div style={{display: 'inline-flex', alignItems: 'center', gap: '10px'}}>
+                    marginBottom: '1rem',
+                    lineHeight: '1.3',
+                    letterSpacing: '-0.02em'
+                  }}>{item.name}</h2>
+                  <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '0.8rem', justifyContent: 'flex-start'}}>
                     <button
                       className="share-btn"
                       title="Share on WhatsApp"
-                      style={{background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)', color: '#fff', border: 'none', borderRadius: '10px', padding: '0.6rem 1.2rem', fontWeight: '600', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)', transition: 'all 0.3s'}}
+                      style={{
+                        background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)', 
+                        color: '#fff', 
+                        border: 'none', 
+                        borderRadius: '12px', 
+                        padding: 'clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)', 
+                        fontWeight: '700', 
+                        fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+                        display: 'inline-flex', 
+                        alignItems: 'center', 
+                        gap: '0.5rem', 
+                        boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)', 
+                        transition: 'all 0.3s',
+                        cursor: 'pointer',
+                        minHeight: '44px'
+                      }}
                       onClick={() => {
                         const url = window.location.href;
                         const text = encodeURIComponent(`${item.Question}\nPlay on: ${url}`);
                         window.open(`https://wa.me/?text=${text}`, '_blank');
                       }}
+                      onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                      onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     >
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '20px', height: '20px'}} />
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style={{width: '18px', height: '18px'}} />
                       Share
                     </button>
                     <button
@@ -198,14 +212,18 @@ function Makeitfun() {
                         background: isAnswerShown ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                         color: '#fff',
                         border: 'none',
-                        borderRadius: '10px',
-                        padding: '0.6rem 1.5rem',
-                        fontWeight: 600,
-                        fontSize: '1rem',
-                        boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                        borderRadius: '12px',
+                        padding: 'clamp(0.6rem, 2vw, 0.75rem) clamp(1.2rem, 3vw, 1.8rem)',
+                        fontWeight: 800,
+                        fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+                        boxShadow: isAnswerShown ? '0 4px 15px rgba(231, 76, 60, 0.4)' : '0 4px 15px rgba(102, 126, 234, 0.4)',
                         cursor: 'pointer',
-                        transition: 'all 0.3s',
-                        outline: 'none'
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        outline: 'none',
+                        minHeight: '44px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
                       }}
                       onClick={() => {
                         setDisplayAnswer((prev) => ({
@@ -213,28 +231,49 @@ function Makeitfun() {
                           [startIdx + idx]: !isAnswerShown
                         }));
                       }}
+                      onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
+                      onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
+                      onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                      onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
                     >
-                      {isAnswerShown ? 'Hide answer' : 'Show answer'}
+                      <span style={{fontSize: '1.1rem'}}>{isAnswerShown ? '👁️' : '👁️‍🗨️'}</span>
+                      {isAnswerShown ? 'Hide Answer' : 'Show Answer'}
                     </button>
                   </div>
                 </div>
                 <div style={{
-                  fontSize: '1.1rem',
-                  color: '#4a5568',
-                  lineHeight: '1.8',
-                  marginBottom: '1rem'
+                  fontSize: 'clamp(0.95rem, 2.5vw, 1.1rem)',
+                  color: '#374151',
+                  lineHeight: '1.75',
+                  marginBottom: '1.5rem',
+                  fontWeight: '500',
+                  wordBreak: 'break-word'
                 }} dangerouslySetInnerHTML={{__html: (item.Explanation || '').replaceAll('\n', '<br />')}} />
                 {item.img && item.img !== 'null' && (
                   <div style={{ margin: '16px 0' }}>
                     {!DisplayImage[startIdx + idx] ? (
                       <button
-                        style={{background: '#667eea', color: '#fff', border: 'none', borderRadius: '8px', padding: '0.5rem 1.2rem', fontWeight: '600', cursor: 'pointer'}}
+                        style={{
+                          background: 'linear-gradient(135deg, #667eea, #764ba2)', 
+                          color: '#fff', 
+                          border: 'none', 
+                          borderRadius: '12px', 
+                          padding: 'clamp(0.6rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem)', 
+                          fontWeight: '700',
+                          fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+                          cursor: 'pointer',
+                          boxShadow: '0 4px 12px rgba(102, 126, 234, 0.3)',
+                          transition: 'all 0.3s',
+                          minHeight: '44px'
+                        }}
                         onClick={() => setDisplayImage((prev) => ({ ...prev, [startIdx + idx]: true }))}
+                        onTouchStart={(e) => e.currentTarget.style.transform = 'scale(0.98)'}
+                        onTouchEnd={(e) => e.currentTarget.style.transform = 'scale(1)'}
                       >
-                        Show Image
+                        🖼️ Show Image
                       </button>
                     ) : (
-                      <img src={item.img} alt="Puzzle visual" style={{ width: 500, height: 300, objectFit: 'cover', borderRadius: '10px', boxShadow: '0 2px 8px #ccc' }} />
+                      <img src={item.img} alt="Puzzle visual" style={{ width: '100%', maxWidth: '500px', height: 'auto', objectFit: 'cover', borderRadius: '12px', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }} />
                     )}
                   </div>
                 )}
@@ -243,9 +282,9 @@ function Makeitfun() {
                 <div style={{
                   background: 'rgba(212, 248, 232, 0.95)',
                   backdropFilter: 'blur(10px)',
-                  borderLeft: '6px solid #10b981',
+                  borderLeft: 'clamp(4px, 1vw, 6px) solid #10b981',
                   borderRadius: '20px',
-                  padding: '2rem 2.5rem',
+                  padding: 'clamp(1.2rem, 4vw, 2rem) clamp(1rem, 4vw, 2.5rem)',
                   marginTop: '1.5rem',
                   boxShadow: '0 8px 24px rgba(16, 185, 129, 0.2)',
                   color: '#1a5f4f',

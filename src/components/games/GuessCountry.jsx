@@ -83,7 +83,7 @@ function GuessCountry() {
         <div style={{
           display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
           minHeight:'100vh', background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-          padding:'4.8rem 1.6rem 1.6rem 1.6rem'
+          padding:'clamp(4rem, 10vw, 4.8rem) clamp(0.8rem, 3vw, 1.6rem) 1.6rem'
         }}>
           <div style={{
             background:'rgba(255,255,255,0.95)', backdropFilter:'blur(10px)',
