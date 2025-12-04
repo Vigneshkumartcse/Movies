@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../styles/App.css";
 import Load from "../common/Load.jsx";
 import GameNavbar from "../common/GameNavbar.jsx";
+import TeamScoreboard from "../common/TeamScoreboard.jsx";
 import { useNavigate } from "react-router-dom";
 
 function GK() {
@@ -20,6 +21,12 @@ function GK() {
   const [shuffledClues, setShuffledClues] = useState([]);
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [showRegionDropdown, setShowRegionDropdown] = useState(false);
+  const [teamMode, setTeamMode] = useState(false);
+  const [numberOfTeams, setNumberOfTeams] = useState(2);
+  const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
+  const [teamScores, setTeamScores] = useState([]);
+  const [showWinnerModal, setShowWinnerModal] = useState(false);
+  const [autoPlay, setAutoPlay] = useState(false);
 
   // Fetch all categories on mount
   useEffect(() => {
@@ -91,6 +98,22 @@ function GK() {
     }
   }, [questions, currentIndex]);
 
+  // Auto-advance after answering
+  useEffect(() => {
+    if (autoPlay && showNext) {
+      const timer = setTimeout(() => {
+        if (currentIndex < questions.length - 1) {
+          setCurrentIndex(currentIndex + 1);
+          setSelectedAnswer(null);
+          setIsCorrect(false);
+          setShowNext(false);
+          setMessage("");
+        }
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [autoPlay, showNext, currentIndex, questions.length]);
+
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
@@ -106,11 +129,28 @@ function GK() {
     const correct = answer === questions[currentIndex].answer;
     setIsCorrect(correct);
     setShowNext(true);
-    if (correct) {
-      setMessage("You are correct!");
-      setScore(score + 5);
+    
+    if (teamMode) {
+      // Team mode: add score to current team if correct
+      if (correct) {
+        const newScores = [...teamScores];
+        newScores[currentTeamIndex] = (newScores[currentTeamIndex] || 0) + 1;
+        setTeamScores(newScores);
+        const teamLetter = String.fromCharCode(65 + currentTeamIndex);
+        setMessage(`Team ${teamLetter} is correct! +1 point`);
+      } else {
+        setMessage(`Wrong! The answer was: ${questions[currentIndex].answer}`);
+      }
+      // Move to next team
+      setCurrentTeamIndex((currentTeamIndex + 1) % numberOfTeams);
     } else {
-      setMessage(`Wrong! The answer was: ${questions[currentIndex].answer}`);
+      // Regular mode
+      if (correct) {
+        setMessage("You are correct!");
+        setScore(score + 5);
+      } else {
+        setMessage(`Wrong! The answer was: ${questions[currentIndex].answer}`);
+      }
     }
   };
 
@@ -135,6 +175,9 @@ function GK() {
     setShowNext(false);
     setMessage("");
     setShuffledClues([]);
+    setTeamMode(false);
+    setCurrentTeamIndex(0);
+    setTeamScores([]);
   };
 
   const handleCategoryChange = (category) => {
@@ -163,6 +206,32 @@ function GK() {
     setShuffledClues([]);
     setShowRegionDropdown(false);
     fetchQuestions(selectedCategory, region);
+  };
+
+  const handleTeamStart = (numTeams) => {
+    setNumberOfTeams(numTeams);
+    setTeamMode(true);
+    setCurrentTeamIndex(0);
+    // Initialize team scores
+    setTeamScores(Array(numTeams).fill(0));
+  };
+
+  const handleEndGame = () => {
+    setShowWinnerModal(true);
+    // Auto-close after 4 seconds
+    setTimeout(() => {
+      setShowWinnerModal(false);
+    }, 4000);
+  };
+
+  const getWinner = () => {
+    if (teamScores.length === 0) return null;
+    const maxScore = Math.max(...teamScores);
+    const winnerIndex = teamScores.indexOf(maxScore);
+    return {
+      name: String.fromCharCode(65 + winnerIndex),
+      score: maxScore
+    };
   };
 
   // Category Selection Screen
@@ -486,6 +555,11 @@ function GK() {
         score={score}
         showBack={true}
         onBack={handleBackToCategories}
+        showTeam={true}
+        onTeamStart={handleTeamStart}
+        autoPlay={autoPlay}
+        onAutoPlayToggle={() => setAutoPlay(!autoPlay)}
+        showAutoPlay={true}
       />
 
       {/* Category & Region Dropdown */}
@@ -668,6 +742,79 @@ function GK() {
         </div>
       </div>
 
+      {/* Team Scoreboard */}
+      {teamMode && (
+        <TeamScoreboard 
+          numberOfTeams={numberOfTeams}
+          currentTeamIndex={currentTeamIndex}
+          teamScores={teamScores}
+          onEndGame={handleEndGame}
+          onClose={() => {
+            setTeamMode(false);
+            setCurrentTeamIndex(0);
+            setTeamScores([]);
+          }} 
+        />
+      )}
+
+      {/* Winner Modal */}
+      {showWinnerModal && getWinner() && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.7)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10000,
+          animation: 'fadeIn 0.3s ease-out'
+        }}>
+          <div style={{
+            background: '#fff',
+            borderRadius: '20px',
+            padding: '3rem 4rem',
+            textAlign: 'center',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)',
+            animation: 'scaleIn 0.5s ease-out',
+            maxWidth: '500px'
+          }}>
+            <h2 style={{
+              fontSize: '2.5rem',
+              fontWeight: 900,
+              color: '#2d3748',
+              marginBottom: '1.5rem'
+            }}>
+              Winner!
+            </h2>
+            <div style={{
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              borderRadius: '16px',
+              padding: '2rem',
+              marginBottom: '1.5rem'
+            }}>
+              <div style={{
+                fontSize: '3rem',
+                fontWeight: 900,
+                color: '#fff'
+              }}>
+                Team {getWinner().name}
+              </div>
+            </div>
+            <div style={{
+              fontSize: '1.5rem',
+              fontWeight: 700,
+              color: '#667eea'
+            }}>
+              {getWinner().score} Points
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Main Game Content */}
       <div style={{
         background: 'rgba(255,255,255,0.95)',
@@ -805,8 +952,8 @@ function GK() {
           )}
         </div>
 
-        {/* Next Button */}
-        {showNext && currentIndex < questions.length - 1 && (
+        {/* Next Button (hidden when autoPlay enabled) */}
+        {showNext && currentIndex < questions.length - 1 && !autoPlay && (
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.8rem' }}>
             <button
               style={{
