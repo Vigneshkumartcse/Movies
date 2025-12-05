@@ -591,7 +591,7 @@
 	top: 0.6rem;
 	width: 8px;
 	height: 8px;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
 	border-radius: 50%;
 }
 
@@ -819,7 +819,7 @@
 .page-title {
 	font-size: 2.5rem;
 	font-weight: 800;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
@@ -1050,7 +1050,7 @@ button{
   width: 80px;
   height: 80px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -1084,7 +1084,7 @@ button{
 }
 
 .login-brand {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1308,7 +1308,7 @@ button{
 .login-modal-title {
   font-size: 1.8rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -1623,7 +1623,7 @@ button{
 
 /* Professional Pagination Styles */
 .nav-arrow {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%);
   color: #ffffff;
   border: none;
   border-radius: 8px;

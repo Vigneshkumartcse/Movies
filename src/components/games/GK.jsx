@@ -250,7 +250,7 @@ function GK() {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           padding: '4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           {loading ? (
@@ -290,7 +290,7 @@ function GK() {
                     key={cat}
                     onClick={() => handleCategorySelect(cat)}
                     style={{
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                       color: '#fff',
                       border: 'none',
                       borderRadius: '12px',
@@ -339,7 +339,7 @@ function GK() {
           alignItems: 'center',
           justifyContent: 'center',
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           padding: '4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           <div style={{
@@ -449,7 +449,7 @@ function GK() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           padding: '4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           <p style={{ color: '#fff', fontSize: '1.2rem' }}>No questions available</p>
@@ -473,7 +473,7 @@ function GK() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           padding: '4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           <div style={{
@@ -515,7 +515,7 @@ function GK() {
             <button
               onClick={handleBackToCategories}
               style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                 color: '#fff',
                 border: 'none',
                 borderRadius: '11px',
@@ -542,7 +542,7 @@ function GK() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
       padding: '4.8rem 0.8rem 1.6rem 0.8rem',
       display: 'flex',
       justifyContent: 'center',
@@ -814,7 +814,7 @@ function GK() {
               Winner!
             </h2>
             <div style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
               borderRadius: '16px',
               padding: '2rem',
               marginBottom: '1.5rem'
@@ -869,7 +869,7 @@ function GK() {
 
         {/* Question Display */}
         <div style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           borderRadius: '16px',
           boxShadow: '0 8px 24px rgba(102, 126, 234, 0.25)',
           padding: '1.6rem 2rem',
@@ -980,7 +980,7 @@ function GK() {
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '0.8rem' }}>
             <button
               style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                 color: '#fff',
                 fontWeight: 800,
                 fontSize: '0.88rem',

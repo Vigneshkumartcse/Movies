@@ -92,7 +92,7 @@ function MovieGuess() {
         />
         <div style={{
           minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center',
-          background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding:'4.8rem 1.6rem 1.6rem 1.6rem'
+          background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)', padding:'4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           <div style={{
             background:'rgba(255,255,255,0.95)', backdropFilter:'blur(10px)',
@@ -137,7 +137,7 @@ function MovieGuess() {
   return (
     <div style={{
       minHeight:'100vh',
-      background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
       padding:'clamp(4rem, 10vw, 4.8rem) clamp(0.5rem, 2vw, 0.8rem) 1.6rem',
       display:'flex', justifyContent:'center', alignItems:'flex-start'
     }}>
@@ -167,7 +167,7 @@ function MovieGuess() {
 
         {/* Clue Card */}
         <div style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           borderRadius: '16px',
           boxShadow: '0 8px 24px rgba(102, 126, 234, 0.25)',
           padding: '2rem',
@@ -287,7 +287,7 @@ function MovieGuess() {
             onClick={handleSubmit}
             disabled={showNext || !userGuess.trim()}
             style={{
-              background: (showNext || !userGuess.trim()) ? 'linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%)' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              background: (showNext || !userGuess.trim()) ? 'linear-gradient(135deg, #cbd5e0 0%, #a0aec0 100%)' : 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
               color: '#fff', fontWeight: 700, fontSize:'0.9rem',
               border:'none', borderRadius:'12px', padding:'0.85rem 2.2rem',
               boxShadow: (showNext || !userGuess.trim()) ? '0 4px 12px rgba(0,0,0,0.1)' : '0 6px 20px rgba(102,126,234,0.35)', 
@@ -346,7 +346,7 @@ function MovieGuess() {
             <button
               onClick={handleNextMovie}
               style={{
-                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                 color: '#fff', fontWeight: 800, fontSize:'0.95rem',
                 border:'none', borderRadius:'12px', padding:'0.9rem 2.4rem',
                 boxShadow:'0 6px 20px rgba(102,126,234,0.35)', cursor:'pointer',

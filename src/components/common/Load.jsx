@@ -8,7 +8,7 @@ function Load() {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
       gap: '2rem'
     }}>
       {/* Modern spinning loader */}

@@ -59,7 +59,7 @@ function GuessSong() {
         display:'flex',
         alignItems:'center',
         justifyContent:'center',
-        background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
         color:'#fff',
         fontSize:'1.5rem',
         fontWeight:700
@@ -108,7 +108,7 @@ function GuessSong() {
         
         <div style={{
           minHeight:'100vh', display:'flex', alignItems:'center', justifyContent:'center',
-          background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', padding:'4.8rem 1.6rem 1.6rem 1.6rem'
+          background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)', padding:'4.8rem 1.6rem 1.6rem 1.6rem'
         }}>
           <div style={{
             background:'rgba(255,255,255,0.95)', backdropFilter:'blur(10px)',
@@ -135,7 +135,7 @@ function GuessSong() {
             <button
               onClick={()=>window.location.reload()}
               style={{
-                background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                 color:'#fff', border:'none', borderRadius:'11px',
                 padding:'0.8rem 2rem', fontWeight:700, fontSize:'0.88rem',
                 boxShadow:'0 5px 16px rgba(102,126,234,0.3)', cursor:'pointer',
@@ -158,7 +158,7 @@ function GuessSong() {
   return (
     <div style={{
       minHeight:'100vh',
-      background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
       padding:'4.8rem 0.8rem 1.6rem 0.8rem',
       display:'flex', justifyContent:'center', alignItems:'flex-start'
     }}>
@@ -190,7 +190,7 @@ function GuessSong() {
 
         {/* Question Card */}
         <div style={{
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           borderRadius: '16px',
           boxShadow: '0 8px 24px rgba(102, 126, 234, 0.25)',
           padding: '2rem',
@@ -279,7 +279,7 @@ function GuessSong() {
               <div style={{display:'flex', justifyContent:'center'}}>
                 <button
                   style={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                     color: '#fff', fontWeight: 800, fontSize:'0.88rem',
                     border:'none', borderRadius:'13px', padding:'0.8rem 2rem',
                     boxShadow:'0 6px 20px rgba(102,126,234,0.35)', cursor:'pointer',

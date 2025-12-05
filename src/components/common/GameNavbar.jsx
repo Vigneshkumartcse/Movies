@@ -517,7 +517,7 @@ function GameNavbar({
               title="Select difficulty level"
               style={{
                 display:'flex', alignItems:'center', gap:'12px',
-                background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                 color:'#fff', border:'none', borderRadius:'14px',
                 padding:'0.7rem 1.4rem', fontWeight:700, fontSize:'1rem',
                 boxShadow:'0 6px 20px rgba(102,126,234,0.3)',
@@ -588,7 +588,7 @@ function GameNavbar({
         className="mobile-menu-btn"
         style={{
           display:'none',
-          background:'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          background:'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
           border:'none',
           borderRadius:'10px',
           padding:'0.6rem',

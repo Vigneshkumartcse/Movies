@@ -72,7 +72,7 @@ function Makeitfun() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+      background: 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
       paddingTop: '4.5rem',
       paddingBottom: '2rem',
       paddingLeft: '1.5rem',
@@ -209,7 +209,7 @@ function Makeitfun() {
                     </button>
                     <button
                       style={{
-                        background: isAnswerShown ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        background: isAnswerShown ? 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)' : 'linear-gradient(135deg, #8b9ded 0%, #f1abc2 100%)',
                         color: '#fff',
                         border: 'none',
                         borderRadius: '12px',
