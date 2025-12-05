@@ -370,7 +370,9 @@ function App() {
         </p>
       </div>
       
-      <div className='cards-container'>
+      <div className='cards-container' style={{
+        padding: '0 10%'
+      }}>
         <Card 
           data="🎬 Guess the Movie" 
           onClick={() => { navigate('/movieguess') }} 
@@ -383,10 +385,10 @@ function App() {
           data="🧩 Brain Puzzles" 
           onClick={() => { navigate('/tricky') }} 
         />
-        <Card 
+        {/* <Card 
           data="🧩 Solve Mystery" 
           onClick={() => { navigate('/Mystery') }} 
-        />
+        /> */}
         <Card 
           data="🌍 Guess the Country" 
           onClick={() => { navigate('/GuessCountry') }} 
